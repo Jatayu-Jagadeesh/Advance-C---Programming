@@ -1,0 +1,42 @@
+/*
+Doc
+Name		: Jagadeesh.
+Date		: 17-10-2022
+Description	: write a program to print trisngle psttern as shown below
+sample i/p	: 4, 5
+sample o/p	: 4-
+                1 2 3 4
+                5   6
+                7 8
+                9
+              5-
+                1 2 3 4 5
+                6     7
+                8    9
+                10 11
+                12
+ Doc
+ */
+#include<stdio.h>                                                               // header for standization
+int main()
+{
+    int num, i, j, count=0;                                                     // intialize num, i, j, count
+
+    printf("Enter the number\n");                                               // asking user to enter the value
+    scanf("%d", &num);                                                          // read and store user value
+
+    for(i=1; i<=num; i++)                                                       // checking condition if i values
+    {
+    	for (j=1; j<=num-i + 1; j++)                                              // checking condition if j values
+    	    {
+    	        if( i==1 || j ==1 || i+j == num+1 )                               // condition statement
+    	        {
+    	            count=count+1;                                                // adding 1 to count
+    	            printf(" %d", count);                                         // printing count value
+    	        }
+    	        else
+    		    printf(" ");                                                        // printing for empty space
+    	    }
+	        printf("\n");                                                         // printing for new line
+    }
+}
