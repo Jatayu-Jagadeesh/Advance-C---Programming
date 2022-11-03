@@ -1,0 +1,60 @@
+/*
+   Doc
+Name: Jagadeesh
+Date: 17/10/2022 
+Description: Wrie a program to check if number is odd or even
+Sample input: 
+Enter the first number 'A': 2
+Enter the common difference / Ratio 'R': 3
+Enter the number of terms 'N': 5
+Sample output:
+                AP = 2, 5, 8, 11, 14
+                GP = 2, 6, 18, 54, 162
+                HP = 0.5, 0.2, 0.125, 0.0909091, 0.0714285
+Doc
+*/
+
+#include<stdio.h>
+int main()
+{
+    int i,A,R,N,AP,GP,H;			                                            //initialise variable
+    float HP=0;
+    printf("Enter the first number 'A': ");	                                    //taking the input from user
+    scanf("%d", &A);
+    printf("Enter the common difference / Ratio 'R': ");	                    //taking the input from user
+    scanf("%d", &R);
+    printf("Enter the number of terms 'N': ");			                        //taking the input from user
+    scanf("%d", &N);
+
+    if ( N<0 )					                                                //checking condition if N is less than 0
+    {
+	    printf("Invalid input\n");
+    }
+        else
+    {
+	    printf("AP = ");
+	    for (i=0; i<N; i++)
+	    {
+		    AP=0;
+		    AP=A+((i+1)-1)*R;		                                            //storing value to AP (Arithmetic progression)
+		    printf("%d ",AP);
+	}
+
+	    printf("\nGP = ");
+	    H=1;
+	    for (i=0;i<N; i++)
+	    {
+		    GP=A*H;
+		    printf("%d ", GP);		                                            //Geomatric progression with common ratio and storing value to GP
+		    H=H*R;
+	    }
+	    printf("\nHP = ");
+	    for (i=0; i<N; i++)
+	    {
+		    HP= (float)1/(A+((i+1)-1)*R);		                                //Harmonic progression and reciprocals of an AP and storing value to HP
+		    printf("%f ", HP);
+	    }
+	    printf("\n");
+    }
+    return 0;
+}
