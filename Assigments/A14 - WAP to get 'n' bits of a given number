@@ -1,0 +1,31 @@
+/*
+Doc
+Name		: Jagadeesh.
+Date		: 28-10-2022
+Description	:  write a program to get 'n' bits of a given number
+sample i/p	: Enter the number: 10, Enter number of bits: 3
+              Enter the number: 15, Enter number of bits: 2
+sample o/p	: Result = 2
+              Result = 3
+Doc
+*/
+#include<stdio.h>                                                               // header file for standard input and output
+int get_nbit(int num,int n);
+int main()
+{                                                                               // starting point of the block
+    int num, n, res;                                                            // declearing num, n, res integer variables
+
+    printf("Enter the number: ");                                               // reading the number vales from the user
+    scanf("%d", &num);                                                          // to store and read the user values
+
+    printf("Enter number of bits: ");                                           // reading the number of bits vales from the user
+    scanf("%d", &n);                                                            // to store and read the user values
+
+    res=get_nbit(num, n);                                                       // function called
+    printf("Result = %d\n",res);                                                // printing the Result
+}
+
+int get_nbit(int num,int n)                                                     // function call
+{
+    return num & ((1<<n)-1);                                                    // returning the result to funtion called
+}                                                                               // end point of the block
