@@ -1,0 +1,29 @@
+/*
+   Doc
+Name		: Jagadeesh.
+Date		: 29-10-2022
+Description	: write a program to replace 'n' bits of a given number
+sample i/p	: Enter the number: 10, Enter number of bits: 3, Enter the value: 12
+              Enter the number: 15, Enter number of bits: 2, Enter the value: 1
+sample o/p	: Result = 12
+              Result = 13
+Doc
+*/
+
+#include<stdio.h>                                                               // header file for standard input and output
+int replace_nbits(int, int, int);                                               // globally declearing valriables
+int main()
+{                                                                               // starting point of the block
+    int num, n, val, res = 0;                                                   // declearing valriables
+    
+    printf("Enter num, n and val:");                                            // reading values form the user
+    scanf("%d%d%d", &num, &n, &val);                                            // to store and read the values
+    
+    res = replace_nbits(num, n, val);                                           // function called
+    
+    printf("Result = %d\n", res);                                               // printing Result
+}    
+int replace_nbits(int num,int  n,int  val)                                      // function call
+{
+    return (num &~( (1<<n)-1) | val & ((1<<n)-1));                              // returning to fuction called
+}                                                                               // end point of the block
