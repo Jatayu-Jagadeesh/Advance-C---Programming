@@ -1,0 +1,31 @@
+/*
+   Doc
+Name: Jagadeesh.
+Date: 19/10/2022
+Description: Write a program to check N th bit is set or not, if yes, clear the M th bit
+Sample input: 
+Sample output:
+Doc
+*/
+
+#include<stdio.h>                                                               // header file for the standard input and output
+int main()
+{                                                                               // starting point of the block
+    int num,N,M;                                                                // instiizing num, N,M to the variables
+    printf("Enter the number: ");                                               // user to enter the num values
+    scanf("%d", &num);                                                          // to store and read the user values
+    printf("Enter 'N':");                                                       // user to enter the N value
+    scanf("%d", &N);                                                            // to store and read the N value
+    printf("Enter 'M':");                                                       // user to enter the M value
+    scanf("%d", &M);                                                            // to store and read the M value                     
+    if ((num>>N) &1)                                                            // condition num right shift to N &1
+    {
+	num=num& (~(1<<M));                                                           // 1 left shift to M
+	printf("Updated value of num is %d\n", num);                                  // printing the updated value of num is num
+    }
+    else
+    {
+	printf("Updated value of num is %d\n", num);                                  // printing the updated value of num is num
+    }
+    return 0;                                                                   // sucessful exuction of the program
+}                                                                               // end point of the block
