@@ -1,0 +1,45 @@
+/*
+Name : Jagadeesh
+Date : 14 November2022
+Description : write a program to find factorial of given number using recursion
+sample i/p : Enter the value of N : 7
+             Enter the value of N : 5
+             Enter the value of N : -1
+             Enter the value of N : 0
+Sample o/p : Factorial of the given number is 5040
+             Factorial of the given number is 120
+             Invalid Input
+             Factorial of the given number is 1
+ */
+#include <stdio.h>                                                              // header file for standard input and output
+int main()                                                                      // starting of the program
+{                                                                               // starting of the block
+    static int num;                                                             // variable decleration
+    static unsigned long long int fact = 1;                                     // variable decleration
+    if (fact==1)                                                                // condition for if fact == 1
+    {   
+	printf("Enter the value of N :  ");                                         // user to values from the user
+	scanf("%d",&num);                                                           // to store and read from the user
+    }
+    if (num==0)                                                                 // condition id num ==0
+    {
+	printf("Factorial of the given number is 1");                               // printing Factorial of the given number is 1   
+    }
+    else if (num<0)                                                             // condition if num<0
+    {
+	printf("Invalid input\n");                                                  // printing Invalid input
+    }
+    if (num >=1)                                                                // condition if num greaterthan eqal to 1
+    {
+	if(num == 1)                                                                // comndition if num equal to 1
+	{
+	    printf("Factorial of the given number is %lld\n",fact);                 // printing Factorial of the given number 
+	}
+	fact = fact * num--;                                                        // logic fact = fact * num--
+	if(num!=0)                                                                  // condition if num notequal to zero
+	{
+	    main();                                                                 // call main function
+	}
+    }
+    return 0;                                                                   // sucussful exection of the program
+}                                                                               // ending point of the block
