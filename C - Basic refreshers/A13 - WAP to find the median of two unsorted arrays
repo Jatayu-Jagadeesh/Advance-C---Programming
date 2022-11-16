@@ -1,0 +1,92 @@
+/*
+Name   : Jagadeesh
+date   : 28-10-2022
+description   :  Write a program  to find the median of two unsorted arrays
+sample input  : Enter the 'n' value for Array A: 5
+                Enter the 'n' value for Array B: 4
+                Enter the elements one by one for Array A: 3 2 8 5 4
+                Enter the elements one by one for Array B: 12 13 7 5
+sample putput : Median of array1 : 4
+                Median of array2 : 9.5                                      
+                Median of both arrays : 6.75     
+*/
+
+#include<stdio.h>                                                               // header file for stadard input and output
+int main()                                                                      // start of the code
+{                                                                               // starting point of the block
+    int size1,size2,swap;                                                       // integer dicleration for size 1 size 2 and swap
+    float median1,median2,m;                                                    // float decleration for median1 median2 and m
+    
+    printf("Enter the 'n' value for Array A: ");                                // user to enter the values of Array A     
+    scanf("%d",&size1);                                                         // to store and read the values in size1
+    
+    printf("Enter the 'n' value for Array B: ");                                // user to enter the values of Array B
+    scanf("%d",&size2);                                                         // to store and read the values in size2
+
+    int arr[size1];                                                             //initilization of array1
+    int arr2[size2];                                                            //initilization of array2
+
+    printf("Enter the elements one by one for Array A: ");                      // user to enter the elements one by one for Array A
+
+    for(int i=0;i<size1;i++)                                                    //loop runs for size1 times
+    {
+	    scanf("%d",&arr[i]);                                                    //scan the elements one by one 
+    }
+
+    printf("Enter the elements one by one for Array B: ");                      // user to enter the elements one by one for Array B
+
+    for(int i=0;i<size2;i++)                                                    //loop runs for size2 times
+    {
+	    scanf("%d",&arr2[i]);                                                   //scan the elements of arr2 one by one
+    }
+
+
+    for(int i=0;i<size1-1;i++)                                                  // loop runs for size1 times
+    {
+	    for(int j=i+1;j<size1;j++)                                              // loop runs for size1 times with respective to loop i
+	    {
+	        if(arr[i]>=arr[j])                                                  // check for the array elements grater than j
+	        {
+	       
+		        swap=arr[i];                                                    // swap logic
+		        arr[i]=arr[j];                                                  // swap logic
+		        arr[j]=swap;                                                    // swap logic
+	        }
+	    }
+    }
+    for(int i=0;i<size2-1;i++)                                                  // loop runs for size2 times
+    {
+	    for(int j=i+1;j<size2;j++)                                              // loop runs for size2 times with respective to i loop
+	    {
+	        if(arr2[i]>arr2[j])                                                 // check for hre array elements grater then j
+	        {
+	      
+		        swap=arr2[i];                                                   // swap logic
+		        arr2[i]=arr2[j];                                                // swap logic
+		        arr2[j]=swap;                                                   // swap logic
+	        }
+	    }
+    }
+
+    if(size1%2==0)                                                              // check for even size
+    {
+        median1 = (( arr[(size1/2)] + arr[((size1/2)-1)])/(float)2);            // median logic
+    }
+    else
+    {
+	    median1 = arr[(size1/2)];                                               // for odd
+    }
+    printf("Median of array1 : %g",median1);                                    // printing the Median of array1
+
+    if(size2%2==0)                                                              //check for even size2
+    {
+	    median2 = (( arr2[(size2/2)] + arr2[((size2/2)-1)])/(float)2);          // median logic
+    }
+    else
+    {
+	    median2 = arr2[(size2/2)];                                              //for odd logic
+    }
+    printf("\nMedian of array2 : %g",median2);                                  // printing the Median of array2
+    m=((median1+median2)/(float)2);                                             //median for both medians
+    printf("\nMedian of both arrays : %g",m);                                   // printing Median of both arrays
+}                                                                               // ending point of the block
