@@ -1,0 +1,44 @@
+/*
+DOC
+Name : Jagadeesh
+Date : 16-nov-2022.
+Description : WAP to generate fibonacci numbers using recursion
+Sample input : Integers N
+Sample output : Enter a number: 8
+                Enter a number: 10
+                Enter a number: 21
+                Enter a number: -12
+                0, 1, 1, 2, 3, 5, 8 
+                0, 1, 1, 2, 3, 5, 8
+                0, 1, 1, 2, 3, 5, 8, 13, 21
+                Invalid input
+DOC
+*/
+#include<stdio.h>                                                               // header files for standard input and output
+void pos_fib(int N, int v1, int v2, int Nv)		                                // Function definition
+{                                                                               // starting point of the block
+	if(N>=0)  		    	                                                    // Check N is positive or not
+	{   
+	    if(v1<=N)			                                                    // check the condition value 1 is lessthan or not
+	    {
+		printf("%d ",v1);	                                                    // Print the value1
+		Nv=v1+v2;	    	                                                    // Add the first two values and store in next value Nv
+		v1=v2;
+		v2=Nv;			                                                        // Swap the values v2 as v1 and Nv as v2
+		pos_fib(N,v1,v2,Nv);	                                                // Call the function recursively
+	    }
+	}
+	else
+	    {
+		printf("Invalid input");	                                            // If num is negitive print invalid
+	    }
+}                                                                               // end of the block
+
+int main()		                                                                // Main Function
+{
+    int N;	                    	                                            //Declare the N variable
+    printf("Enter a number: ");
+    scanf("%d",&N);	                                                            // Read N from the user
+    int v1=0,v2=1,Nv=0;         	                                            // Intialize the first and second value
+    pos_fib(N,0,1,0);           	                                            // Function call
+}                                                                               // returning to function definition
