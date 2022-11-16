@@ -1,0 +1,77 @@
+/*
+   Doc
+Name		: Jagadeesh.
+Date		: 17-10-2022.
+Description	: wrire a program to find which day of the year
+sample i/p	: 
+sample o/p	:
+Doc
+*/
+
+#include<stdio.h>                                                               // header file for the standard input and output
+int main()
+{                                                                               // starting point of the block
+    int n,fd,var;                                                               // declearing n,fd,var variable
+    n=0;                                                                        // declearing n=0
+   
+    printf("Enter the value of'n': ");                                          // reading the Enter the value of 'n' from user
+    scanf("%d", &n);                                                            // to store read the user entered value
+	
+        if(n>0 && n<=365)                                                       // condition for n greater than zero and num lessthen are equal to 365
+    {
+	printf("Choose First Day \n");                                              // Choose First Day from the user
+	printf("1.Sunday\n");                                                       // diplaying 1.sunday
+	printf("2.Monday\n");                                                       // diplaying 2.Monday
+	printf("3.Tuesday\n");                                                      // diplaying 3.Tuesday
+	printf("4.wednesday\n");                                                    // diplaying 4.Wednesday
+	printf("5.Thursday\n");                                                     // diplaying 5.Thrusday
+	printf("6.Friday\n");                                                       // diplaying 6.Fridaay
+	printf("7.Saturday\n");                                                     // diplaying 7.Saturday
+
+	printf("\nEnter the option to set the first day: ");                        // reading Enter the option to set the first day from the user
+	scanf("%d", &fd);                                                           // to store and read the user entered value fd
+	
+	if(fd>0 && fd<=7)                                                           // statement fd lesthan equal to 7
+	{
+	    var=fd+(n-1);                                                           // adding n-1 to fd to var variable
+	    switch(var%7)                                                           // using switch statment var%7
+	    {
+	
+    		case 1:printf("The day is Sunday");                                 // printing the day is sunday
+	           break;                                                           // beak steatment to stop
+	
+	    case 2:printf("The day is Monday");                                     // printing the day is Monday
+	           break;                                                           // beak steatment to stop
+	
+	    case 3:printf("The day is Tuesday");                                    // printing the day is Tuesday
+	           break;                                                           // beak steatment to stop
+	
+	    case 4:printf("The day is Wednesday");                                  // printing the day is Wednesday
+	           break;                                                           // beak steatment to stop
+	
+	    case 5:printf("The day is Thursday");                                   // printing the day is Trusday
+	           break;                                                           // beak steatment to stop
+	
+	    case 6:printf("The day is Friday");                                     // printing the day is Friday
+	           break;                                                           // beak steatment to stop
+	
+	    case 0:printf("The day is Saturday");                                   // printing the day is saturday
+	           break;                                                           // beak steatment to stop
+	
+	    default:                                                                // default case statement
+	  
+		   printf("Error\n");                                                   // printing if any error message entered
+	    }
+	}
+	else 	
+	{   
+		   printf("Error: Invalid input, first day should be > 0 and <= 7");    // printing Error: Invalid input, first day should be > 0 and <= 7
+	}
+    }
+    else
+    {
+		   printf("Error: Invalid Input, n value should be > 0 and <= 365");    // printing Error: Invalid Input, n value should be > 0 and <= 365
+	}
+    printf("\n");                                                               // printing for newline
+    return 0;                                                                   // sucessful execution of the block
+}                                                                               // ending point of the block
