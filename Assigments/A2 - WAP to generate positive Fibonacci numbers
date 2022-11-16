@@ -1,0 +1,45 @@
+/*
+Name         : Jagadeesh
+Date         : 19-10-2022
+Description  : Printing positive Fibonacci number
+Sample input : Any positive value  eg: 5
+Sample output: 0 1 1 2 3 5
+*/            
+
+#include <stdio.h>                                                              // header files for standard input and output
+int main()                                                                      // starting point of the program
+{                                                                               // starting point of the            
+    int n,x,y=1,next=0;                                                         // declare the variables
+
+    printf("Enter a number: ");                                                 // user to engter the values
+    scanf("%d", &n);                                                            // to check input from user
+
+      if ( n > 0 )                                                              // checking if condition n is greterthen zero or not
+      {
+       	while ( next <= n )                                                     // checking while loop 
+       	{
+    	    printf("%d ", next);
+    	    x=y;                                                                // moving value of y to x
+    	    y=next;                                                             // moving value of next to y
+    	    next=x+y;                                                           // calculating next
+    	 }
+	 
+      }
+
+      else if ( n == 0 )                                                        // checking else if condition
+
+      {
+	  printf("%d",n);
+      }
+      
+
+      else
+
+      {
+	  printf("Invalid Input");
+      }
+      printf("\n");
+
+     
+    return 0;
+}                                                                               // ending point of the block
