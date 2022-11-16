@@ -1,0 +1,45 @@
+/*
+   Doc
+Name		: Jagadeesh.
+Date		:
+Description	: write a program to print the numbers in X format as shown below
+sample i/p	: 4, 5
+sample o/p	: 4-
+             1  4
+              23
+              23
+             1  4
+              
+              5-
+              1   5
+               2 4
+                3
+               2 4
+              1   5
+Doc
+*/
+#include<stdio.h>                                                               // header file for the standard input and output
+int main()
+{
+    
+ int num, i, j;                                                                 // initialize num, i, j
+
+	 printf("Enter the number\n");                                              // asking user to enter thee nummber
+     	 scanf("%d", &num);                                                     // read and store user entered value
+ 
+      for(i=1; i<=num; i++)                                                     // checking the condition of i values
+	{
+	    for(j=1; j<=num; j++)                                                   // checking the condition of j values
+	    {
+	   if ( i==j || i+j == num+1)                                               // initializing i = j , addind i with j to num, adding 1
+	   {
+	       printf("%d",j);                                                      // printing result of j value
+	   }
+	   else
+	   {
+	       printf(" ");                                                         // printing for space
+	   }
+	    }
+	    printf("\n");                                                           // new line
+	}
+}
