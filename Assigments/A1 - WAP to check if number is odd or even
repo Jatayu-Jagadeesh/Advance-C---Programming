@@ -1,0 +1,36 @@
+/*
+Name         : Jagadeesh
+Date         : 14-10-2022
+Description  : Check whether number is even or odd.
+Sample input : Any positive or negative number.
+Sample output: Displays output as per enterd number. 
+*/            
+
+#include <stdio.h>                                                              // header files for standard input and output
+int main()                                                                      // starting of the program
+{                                                                               // starting point of the block
+    int num;                                                                    // variable to store the given number
+    printf("enter the number\n");                                               // user to enter the values
+    scanf("%d", &num);                                                          // take input from the user
+
+    if ( num==0)                                                                // to check the number is equal to zero
+    {
+	printf("%d is neither odd nor even\n", num);                                // printing the number
+    }
+
+    else if ( num%2==0 )                                                        // to check whether the number is even or odd
+    {
+	if ( num>0 )                                                                // neasted if else condition to check the number is positive or negative
+	    printf("%d is positive even number\n", num);
+	else
+	    printf("%d is negative even number\n", num);
+    }
+    else                                                                        // the remainder is not equal to zero
+    {
+	if ( num>0 )                                                                // neated if else condition to check the number is even or odd
+	    printf("%d is positive odd number\n", num);
+	else
+	    printf("%d is negative odd number\n", num);
+    }
+    return 0;//
+}                                                                               // ending point of the block
