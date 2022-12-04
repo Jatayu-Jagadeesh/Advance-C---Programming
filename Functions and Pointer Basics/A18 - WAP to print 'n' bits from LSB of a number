@@ -1,0 +1,41 @@
+/*
+Name : Jagadeesh
+Date : 31-10-202
+Description : Writw  rogram to print 'n' bits from LSB of a number
+sample i/p : Enter the number: 10, Enter number of bits: 12
+             Enter the number: 15, Enter number of bits: 4
+Sample o/p : Binary form of 10: 0 0 0 0 0 0 0 0 1 0 1 0 
+             Binary form of 15: 1 1 1 1
+*/
+
+#include <stdio.h>                                                              // header file for standard input and output
+int print_bits(int, int);                                                       // globally function called
+int main()
+{                                                                               // starting point of the block
+    int num,n;                                                                  // declearing num,n integer variables
+    
+    printf("Enter num, n :\n");                                                 // user to enter the values 
+    scanf("%d%d", &num, &n);                                                    // to store and read the user enterd values
+
+    if(n > 32)                                                                  // condition n greater than 32
+    {
+    	n=32;                                                                   // checking condition equal to  32
+    }
+    
+    printf("Binary form of %d:", num);                                          // printing binary form of give n=num                           
+    print_bits(num, n);                                                         // function called
+}
+
+int print_bits(int num,int n)                                                   // function call
+    {
+	    for (int i=n-1;i>=0;i--)                                                // for loop statment
+	{
+	    if(num&(1<<i))                                                          // if condition num & 1 left shif to i
+	    {
+		    printf("1 ");                                                       // returning to function call
+	    }
+	    else
+		printf("0 ");                                                           // returning to funcction call
+	}
+ }                                                                              // ending point of the block
+
