@@ -1,0 +1,35 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : To implement getword function
+Sample input : Welcome to Emertxe
+               Enter the string : Hello
+Sample output: You entered Welcome and the length is 7
+               You entered Hello and the length is 5
+*/            
+#include <stdio.h>                                                              // header file for standard input andd output
+int getword(char str[])                                                         //defination of the getword function
+{
+    int len=0,index=0;                                                          //declaring and initialising the variables
+    while (str[index] != '\0')                                                  //checking whether is non empty string
+    {
+        ++len;                                                                  //incrementing length and incrementing index
+        index++;
+        if (str[index] == ' ')                                                  //when space is encountered replacing it by null character
+            str[index]='\0';
+    }
+    return len;                                                                 //returning length to main function
+}
+int main()                                                                      // starting of the program
+{
+        int len = 0;                                                            //declaring length and string
+	    char str[100];
+
+		printf("Enter the string : ");
+		scanf(" %[^\n]", str);                                                  //reading the string from user
+
+		len = getword(str);                                                     //calling the function
+
+        printf("You entered %s and the length is %d\n", str, len);              //printing first word and length of the word
+        return 0;
+}
