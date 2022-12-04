@@ -1,0 +1,46 @@
+/*
+Name         : Jagadeesh
+Date         : 05-10-2022
+Description  : write a program to impliment circular right shift
+Sample input : Enter num:12, Enter n:3
+               Enter num: -12, Enter n : 3
+Sample output: Result in Binary:1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+               Result in Binary: 10011111 11111111 11111111 11111110
+*/            
+
+#include<stdio.h>                                                               // header files for standart input and output
+int circular_right(unsigned int num, unsigned int n)                            // function call
+{                                                                               // starting point of the block
+   return num >> n | num << 32-n;                                               // equation for circular left right in 32 bits
+}
+int print_bits(int ret)                                                         // function call for print the binary bits
+{
+    for (int i=31;i>=0;i--)                                                     // for loop for set binary bits
+    {
+	    if (ret >> i & 1)                                                       // condition for set 1 or 0
+	    {
+	    printf(" 1");
+	    }
+	    else
+	    {
+	    printf(" 0");
+	    }
+    }
+}
+
+int main()
+{
+    int num, n, ret;                                                            // initialize the num,ret,n and sum
+
+    printf("Enter num:");                                                       // user to enter the number
+    scanf("%d", &num);                                                          //read number from user
+    printf("Enter n:");
+    scanf("%d", &n);                                                            // read the number of bits from user
+
+    ret = circular_right(num,n);                                                // function call
+
+    printf("Result in Binary: ");      
+    print_bits(ret);                                                            // function for print n bits
+
+    printf("\n");
+}                                                                               // end point of the block
