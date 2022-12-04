@@ -1,0 +1,31 @@
+/*
+   Doc
+Name		: Jagadeesh.
+Date		: 29-10-2022
+Description	: write a program to get 'n' bits from given position of a number
+sample i/p	: Enter the number: 12, Enter number of bits: 3, Enter the pos: 4
+              Enter the number: 15, Enter number of bits: 2, Enter the pos: 2
+sample o/p	: Result = 3
+              Result = 3
+Doc
+*/
+
+#include<stdio.h>                                                               // header file for standard input and ouput
+int get_nbits_from_pos(int, int, int);                                          // Global declearing integer variables
+int main()
+{                                                                               // starting point of the block
+    int num, n, pos, res = 0;                                                   // declearing integer variables  
+    
+    printf("Enter num, n and val:");                                            // user to enter the values
+    scanf("%d%d%d", &num, &n, &pos);                                            // Store and read the values from the user
+    
+    res = get_nbits_from_pos(num, n, pos);                                      // function called
+    
+    printf("Result = %d\n", res);                                               // printing the Result
+}    
+
+int get_nbits_from_pos(int num,int n,int pos )                                  // function call
+{
+    return (num& ((1<<n)-1)<<pos-n+1)>>(pos +1-n);                              // returning to the  main function called
+}                                                                               // ending point of the block
+
