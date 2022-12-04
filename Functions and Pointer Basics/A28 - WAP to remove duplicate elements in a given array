@@ -1,0 +1,62 @@
+/*
+DOC
+Name : Jagadeesh
+Date : 16-nov-2022.
+Description : WAP to remove duplicate elements in a given array
+Sample input : Read size and elements into the array
+Sample output : Enter the size: 5
+                Enter elements into the array: 5 1 3 1 5
+                Enter elements into the array: 2 1 1 1 5
+                After removing duplicates: 5 1 3
+                After removing duplicates: 2 1 5
+DOC
+*/
+#include<stdio.h>                                                               // header files for standard input and output
+void fun(int [],int,int [],int*);	                                            //Function Prototype
+int main()		                                                                // Main Function
+{                                                                               // starting point of the block
+    int size;		                                                            // Intialize the size 
+    int count=0;                                                                // Intialize the count 
+    printf("Enter the size: ");	                                                // Read the size from the user
+    scanf("%d",&size);	                                                        // to store and read values
+    
+    int arr1[size];			                                                    // Declaring the arrays 1
+    int arr2[size];                                                             // Declaring the arrays 2
+    
+    printf("Enter elements into the array: ");	                                // user to enter the array elemrnts from the user
+    for(int i=0;i<size;i++) 	
+    {
+        scanf("%d",&arr1[i]); 		                                            // reading the array elements
+    }
+    fun(arr1,size,arr2,&count);		                                            // Call the Function
+
+    printf("After removing duplicates: ");                                      // printing After removing duplicates
+    
+    for(int i=0;i<=count;i++)		                                            // run the for loop
+    {
+        printf("%d ",arr2[i]);                                                  // printing the array2
+    }
+    printf("\n");                                                               // printing the new line
+}                                                                               // end of the block
+
+void fun(int arr1[], int size, int arr2[], int *count)	                        //Function definition
+{
+    arr2[0]=arr1[0];					                                        // store the first element in second element
+
+    for(int i=1;i<size;i++)				                                        // Run the loop 
+    {
+        for(int j=0; j <=(*count); j++)
+        {
+            if(arr2[j] == arr1[i])			                                    // Compare elements in the both arrays
+            {
+                break;					                                        // If both the elements are equal break the lopp
+            }
+            else if(j==(*count))
+            {
+                arr2[j+1]=arr1[i];			                                    // store the elements in second array
+                (*count)++;				                                        // count increment
+                break;
+            }
+	    }
+    }
+}                                                                               // returning to function call
