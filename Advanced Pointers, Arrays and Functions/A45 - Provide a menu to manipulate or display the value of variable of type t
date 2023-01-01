@@ -1,0 +1,243 @@
+/*
+Name         : Jagadeesh
+Date         : 24 December 2022
+Description  : Provide a Menu to manipulate or display the value of variable of type t
+Sample Input : character, int, float, double
+Sample Output: display the elements which ever present in memory
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    void **data = malloc( 8 * sizeof(void*));                                   //allocating the 8 bytes of memory
+    int opt=0, i_flag=0, c_flag1=0, c_flag2=0, s_flag=0, f_flag=0, d_flag=0;    //declaring the flags for each data type
+    while ( opt != 4 )
+    {
+        printf("Display MENU\n");                                               //displaying the menu
+        printf("1. Add element\n2. Remove element\n3. Display element\n4. Exit from program\n");
+        printf("Enter the option:--> ");
+        scanf("%d",&opt);                                                       //reading input from user
+        switch (opt)
+        {
+            case 1:
+                {
+                    int choice;
+                    printf("Enter the type you have to insert\n");          
+                    printf("1. char\n2. short\n3. int\n4. float\n5. double\n");
+                    printf("Enter the choice:--> ");
+                    scanf("%d",&choice);                                        //reading choice from user which data want to enter
+                    switch (choice)
+                    {
+                        case 1:
+                            {
+                                if ( ( c_flag1 == 0 || c_flag2 == 0 ) && d_flag == 0 ) //based on flag value we are entering the data
+                                {
+                                    if ( c_flag1 == 0 )                                 //if flag1 is zero enter the first character
+                                    {
+                                        printf("enter the character: ");
+                                        scanf(" %c",(char *)data);              //reading character
+                                        c_flag1 = 1;                            //setting flag to 1
+                                    }
+                                    else
+                                    {
+                                        printf("enter the character: ");        //if first flag is 1
+                                        scanf(" %c",(char *)data+1);            //than storing data in second byte
+                                        c_flag2 = 1;                            //setting character flag2 to 1
+                                    }
+                                }
+                                else
+                                    printf("Warning: Memory is full, Clear the memory\n");      //if flags are 1 already displaying the message 
+                                break; 
+                            }
+                        case 2:
+                            {
+                                if ( s_flag == 0 && d_flag == 0 )               //if short flags is 0
+                                {
+                                    printf("Enter the short integer: ");
+                                    scanf("%hd",(short *)data + 1);             //reading short value and storing next to character in memory
+                                    s_flag = 1;                                 //setting short flag to 1
+                                }
+                                else
+                                    printf("Warning: Memory is full, Clear the memory\n");      //if flags are already 1 than display message
+                                break; 
+                            }
+                        case 3:
+                            {
+                                if ( i_flag == 0 && f_flag == 0 && d_flag == 0 )                //int flag & float flag to be zero
+                                {
+                                    printf("Enter the integer: ");
+                                    scanf("%d",(int *)data + 1 );               //reading integer value and storing next to short int
+                                    i_flag = 1;                                 //setting integer flag to 1         
+                                }
+                                else
+                                    printf("Warning: Memory is full, Clear the memory\n");
+                                break;                                          //if flag is already 1 than displaying following message
+
+                            }
+                        case 4:
+                            {
+                                if ( i_flag == 0 && f_flag == 0 && d_flag == 0 ) // int and float flags to be zero
+                                {
+                                    printf("Enter the float value: ");
+                                    scanf("%f",(float *)data + 1 );             //reading float from user if integer is not read before
+                                    f_flag = 1;                                 //setting float flag to 1
+                                }
+                                else
+                                    printf("Warning: Memory is full, Clear the memory\n"); //display message if float_flag is already 1
+                                break;
+
+                            }
+                        case 5:
+                            {
+                                if ( c_flag1 == 0 && c_flag2 == 0 && s_flag == 0 && i_flag == 0 && f_flag == 0 && d_flag == 0 )
+                                {
+                                    printf("Enter the double value: ");         //all the flags should be 0 to enter a double value
+                                    scanf("%lf",(double *)data );               //reading double value and storing in all the 8 bytes
+                                    d_flag = 1;                                 //setting double flag to 1
+                                }
+                                else
+                                    printf("Warning: Memory is full, Clear the memory\n"); 
+                                break;
+                            }
+                        default:
+                            {
+                                printf("Error: enter the correct option\n");    //if entered option is incorrect
+                                break;
+                            }
+                    }
+
+                    break;
+                }
+            case 2:
+                {
+                    int ans;
+                    printf("Which data you want to remove\n");
+                    printf("1. char\n2. short int\n3. int\n4. float\n5. double\n");
+                    printf("Enter the option : ");                              //reading option which data the user want to remove
+                    scanf("%d",&ans);
+                    switch (ans)
+                    {
+                        case 1:
+                            {
+                                int select = 1;
+                                while ( select != 3 )
+                                {
+                                    printf("enter the choice\n1. 1st character\n2. 2nd character\n3. Dont want to remove\n");
+                                    scanf("%d",&select);                        //reading which character the user want to delete
+                                    switch (select)
+                                    {
+                                        case 1:
+                                            {
+                                                if ( c_flag1 == 1 )             //if flag1 is 1 than clearing the data
+                                                {
+                                                    printf("---------Successfully deleted the data--------\n\n");
+                                                    c_flag1 = 0;                //setting flag to 0
+                                                }
+                                                else
+                                                    printf("ERROR: No data available in 1st character\n\n");
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                if ( c_flag2 == 1 )             //if flag2 is 1 than clearing the data
+                                                {
+                                                    c_flag2 = 0;                //setting flag2 to 0
+                                                    printf("---------Successfully deleted the data--------\n\n");
+                                                }
+                                                else 
+                                                    printf("ERROR: No data available in 2nd character\n\n");
+                                                break;                          //if flag is already 0 than printing the following message
+                                            }
+                                        case 3:
+                                            break;                              //if you do not want to delete any character
+                                        default:
+                                            {
+                                                printf("ERROR: please enter the correct option\n\n");
+                                                break;                          //if user option is incorrect option
+                                            } 
+                                    }
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                if ( s_flag == 1 )                              //checking short flag is 1 or not
+                                {
+                                    printf("---------Successfully deleted the data--------\n\n");
+                                    s_flag = 0;                                 //if 1 than setting flag to 0 to indicate memory is deleted
+                                }
+                                else
+                                    printf("ERROR: No data available in Short integer memory\n\n");
+                                break;                                          //disply message if flag is already 0
+                            }
+                        case 3:
+                            {
+                                if ( i_flag == 1 )                              //checking intger flag is 1 or not
+                                {
+                                    printf("---------Successfully deleted the data--------\n\n");
+                                    i_flag = 0;                                 //if 1 than setting flag to 0 to indicate memory is deleted
+                                }
+                                else
+                                    printf("ERROR: No data available in integer memory\n\n");
+                                break;                                          // display the message if flag is already 0
+                            }
+                        case 4:
+                            {
+                                if ( f_flag == 1 )                              //checking float flag is 1 or not
+                                {
+                                    printf("---------Successfully deleted the data--------\n\n");
+                                    f_flag = 0;                                 //if 1 than setting flag to 0 to indicate memory is deleted
+                                }
+                                else
+                                    printf("ERROR: No data available in float memory\n\n");
+                                break;                                          // display the message if flag is already 1
+                            }
+                        case 5:
+                            {
+                                if ( d_flag == 1 )                              //checking double flag is 1 or not
+                                {
+                                    printf("---------Successfully deleted the data--------\n\n");
+                                    d_flag = 0;                                 //if 1 than setting flag to 0 to indicate memory is deleted
+                                }
+                                else
+                                    printf("ERROR: No data available in double memory\n\n");
+                                break;                                          //display the message if flag is already 1
+                            }
+                        default:
+                            printf("ERROR: please select the correct choice\n"); //display message if entered option is incorrect
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    printf("\n");
+                    if ( c_flag1 == 1 )                                         //if char1 flag is 1 than printing the value
+                        printf("1st character: %c\n",*(char *)data);
+                    if ( c_flag2 == 1 )                                         //if char2 flag is 1 than printing the value
+                        printf("2nd character: %c\n",*((char *)data + 1 ) );
+                    if ( s_flag == 1 )                                          //if short flag is 1 than printing the value
+                        printf("Short integer: %hd\n",*((short *)data + 1));
+                    if ( i_flag == 1 )                                          //if int flag is 1 than printing the value
+                        printf("Integer value: %d\n",*((int *)data + 1));
+                    if ( f_flag == 1 )                                          //if float flag is 1 than printing the value
+                        printf("Float value: %g\n",*((float *)data + 1));
+                    if ( d_flag == 1 )                                          //if double flag is 1 than printing the value
+                        printf("Double value: %lf\n",*(double *)data);
+                    if ( c_flag1 == 0 && c_flag2 == 0 && s_flag == 0 && i_flag == 0 && f_flag == 0 && d_flag == 0 )
+                        printf("--------No data available to display-----------\n"); //if no flag is 1 than printing the message 
+                    printf("\n");
+                    break;
+
+                }
+            case 4:
+                {
+                    return 0;                                                   //to exit from the program
+                }
+            default:
+                printf("ERROR: please enter the correct choice\n");             //message if incorect option is given
+
+        }
+    }
+}
