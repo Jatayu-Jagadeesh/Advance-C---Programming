@@ -1,0 +1,34 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : To reverse the given string using iterative method
+Sample input : Enter a string: Hello World
+               Enter a string:EMERTXE
+Sample output: Reverse string is:diroW olleH
+               Reverse string is:EXTREME
+*/            
+
+#include <stdio.h>
+void reverse_iterative(char *str);  	                                        //declare function
+int main()
+{
+    char str[30];	                   	                                        //declare character array with size of 30
+    printf("Enter a string : ");
+    scanf("%[^\n]", str);            	                                        //read input from user 	
+    reverse_iterative(str);	        	                                        //function call
+    printf("Reversed string is: %s\n", str);
+}
+void reverse_iterative(char *str)   	                                        //function
+{
+		int i=0,count=0;	        	                                        //declaring integer variables
+		while(str[count++] != '\0');	                                        //loop will run until it reaches NULL
+				count--;	        	                                        //decrement count value
+		char temp;
+		int len=(count-1)/2;
+		for (i=0;i<=len;i++)	
+		{
+				temp=str[i];	    	                                        //swapping the array elements to get reversed string
+				str[i]=str[--count];
+				str[count]=temp;
+		}
+}
