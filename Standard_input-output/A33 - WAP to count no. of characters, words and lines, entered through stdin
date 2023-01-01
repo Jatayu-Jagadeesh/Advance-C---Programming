@@ -1,0 +1,39 @@
+/*
+Name         : Jagadeesh
+Date         : 21 December 2022
+Description  : To count no. of characters,words and lines,entered through stdin
+Sample input : Hello world
+               dennis Ritchie
+	           Linux
+Sample output: Character count : 33
+               Line count : 3
+	           Word count : 5
+*/            
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main()
+{
+    char ch,prev_s = ' ';                                                       // declaration two character variables
+    int char_count = 0,w_count = 0,l_count = 0;                                 // declaration all counts and setting zero
+    while ( (ch = getchar()) != EOF )                                           // reading character one by one from buffer
+    {
+	char_count++;                                                               // counting every character
+
+	if ( ch == '\n' )
+	    l_count++;                                                              // incrimenting l_count if prasent character is newline
+
+
+	else if ((prev_s == ' ' || prev_s == '\t' ) && ch != ' ' && ch != '\t')
+	    w_count++;                                                              // incresing w_count based on previous character
+
+	else if (prev_s == '\n' && ch != ' ' && ch != '\t')
+	    w_count++;                                                              // incresing w_count if previos character is newline
+
+	prev_s = ch;                                                                // present character is been assigend to previos
+    }
+    printf("\nCharacter count:%d\n",char_count);
+    printf("Line count:%d\n",l_count);                                          // printing the all counts
+    printf("Word count:%d\n",w_count);
+}
