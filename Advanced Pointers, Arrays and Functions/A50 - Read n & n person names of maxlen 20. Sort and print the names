@@ -1,0 +1,110 @@
+/*
+Name          : Jagadeesh  
+Date          : 24 Deccember 2022
+Description   : Read n & n person names of maxlen 20. sort and print the names
+Sample input  : Enter the size : 5
+                Enter the 5 names of length max 20 characters in each
+                [0] -> Delhi
+                [1] -> Agra
+                [2] -> Kolkata
+                [3] -> Bengaluru
+                [4] -> Chennai
+Sample output : The sorted names are:
+                Agra
+                Bengaluru
+                Chennai
+                Delhi
+                Kolkata
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void sort_names(char **ptr,int size);                                           //function prototype for sort names
+int mystrcmp(char *ptr, char *ptr1);                                            //function prototype for stringcompare
+void mystrcpy(char *ptr, char *b);                                              //function prototype for sting copy
+
+int main()
+{
+    char *ptr[20];                                                              //initialize a pointer
+    int size;                                                                   //declare variable
+    printf("Enter the size: ");                                                 //print size
+    scanf("%d", &size);                                                         //read size
+    
+    *ptr = (char *)malloc(size * sizeof(char));                                 //initailize a memory for single string ptr
+    for(int i=0; i<size; i++)
+    {
+        ptr[i] = (char *) malloc(100 * sizeof(char));                           //initialize a memory for strings
+    }
+    
+    printf("Enter the %d names of length max 20 characters in each \n", size);  //print a message   
+    for(int i=0; i<size; i++)                                                   //run a loop to scan and print string
+    {
+        printf("[%d] -> ", i);                                                  //print strings
+        scanf("%s", ptr[i]);                                                    //scan strings
+    }
+    sort_names(ptr,size);                                                       //function call for sorting names
+    printf("The sorted names are:\n");                                          //print message
+    for(int i=0; i<size; i++)                                                   //run loop to print a sorted names      
+    {
+        printf("%s\n", ptr[i]);                                                 //print a sorted names
+    }
+    return 0;
+}
+
+void sort_names(char **ptr, int size)                                           //function defination
+{
+    int k;                                                                      //declare variable
+    char temp[20];                                                              //declare a temporary variable
+    for(int i=0; i<size; i++)                                                   //run a loop to sort a names in ascending order
+    {
+        for(int j=i+1; j<size; j++)
+        {
+            if(mystrcmp(ptr[i], ptr[j]) >= 0)                                   //compare a names by calling a function mystrcmp 
+            {
+                mystrcpy(temp,ptr[i]);                                          //copy names using swapping by calling a function mystrcpy
+                mystrcpy(ptr[i], ptr[j]);                                       //call mystrcpy function
+                mystrcpy(ptr[j], temp);                                         //call mystrcpy function
+            }
+        }
+    }
+}
+
+int mystrcmp(char *ptr, char *ptr1)                                             //function defination of mystrcmp
+{
+    int i=0;
+    while(ptr[i] != '\0')                                                       //run loop till ptr becomes null
+    {
+        if(ptr[i] > ptr1[i])                                                    //if a characters of ptr is greater than ptr1
+        {
+            return 1;                                                           //return a positive value
+        }
+        else if(ptr[i] < ptr1[i])                                               // if a characters of ptr is less than ptr1 
+        {
+            return -1;                                                          //return a negative value
+        }
+        i++;                                                                    //increment i value
+    }
+    if((*ptr=='\0') && (*ptr1=='\0'))                                           //check whether both the names reached null 
+    {
+        return 0;                                                               //if yes return 0
+    }
+    else if(*ptr1 == '\0')                                                      //if first name reaches a null
+    {
+        return 1;                                                               //return postive value
+    }
+    else                                                                        //if second name reaches a null
+    {
+        return -1;                                                              //return negative value
+    }
+}
+void mystrcpy(char *ptr, char *b)                                               //function defination for mystring copy
+{
+    int i = 0;
+    while(b[i] != '\0')                                                         //run a loop if source not null
+    {
+        ptr[i] = b[i];                                                          //copy a characters to destination string 
+        i++;                                                                    //increment i value
+    }
+    ptr[i] = '\0';
+}
