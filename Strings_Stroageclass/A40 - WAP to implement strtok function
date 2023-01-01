@@ -1,0 +1,82 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : To implement strtok function
+Sample input : Enter string1 : Bangalore;;::---Chennai:;Kolkata:;Delhi:-:Mumbai
+               Enter string2 : ;./-:
+Sample output: Tokens :
+               Bangalore
+	           Chennai
+	           Kolkata
+	           Delhi
+	           Mumbai
+*/            
+
+#include <stdio.h>
+#include <string.h>
+#include <stdio_ext.h>
+char *my_strtok(char *, char *);		                                        //declare function
+int main()
+{
+	char str[80], delim[80];  	                                                //declaring array
+	scanf("%s", str);
+	getchar();
+	scanf("%s", delim);
+	char *token = my_strtok(str, delim);	                                    //function call
+	printf("Tokens :\n");
+	while (token != NULL)
+	{
+	    printf("%s\n", token);		
+	    token = my_strtok(NULL, delim);
+	}
+    return 0;
+}
+char *my_strtok(char *str, char *delim)		                                    //function 
+{
+	int j = 0;
+	static int i;
+	static char *temp;
+	int length = i;
+	if (str != NULL)                 	                                        //check wheather 'str' is not equal to NULL
+	{
+		temp = str;  	
+	}
+	while (temp[i] != '\0')
+	{
+		if(temp[i] == 32)
+		{
+			i++;
+			continue;
+		}
+		j = 0;
+		while (delim[j] != '\0')
+		{
+			if (delim[j] == temp[i])		                                    //Checking for delimiter
+			{
+				temp[i] = '\0';
+				i++;		                                                    //increment i
+				if (temp[length] != '\0')
+				{
+					return (&temp[length]);		                                //return length
+				}
+				else
+				{
+					length = i;
+					i--;
+					break;
+				}
+			}
+			j++;  	                	                                        //increment j in each loop
+		}
+		i++; 	                    	                                        //increment i in each loop
+	}
+	if (temp[length] == '\0')
+	{
+		i = 0;
+		return NULL;	
+	}
+	else
+	{
+		return (&temp[length]);
+	}
+}
