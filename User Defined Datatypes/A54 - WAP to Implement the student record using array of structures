@@ -1,0 +1,249 @@
+/*
+Name : Jagadeesh
+Date : 23-12-2022
+Description :
+            Sample input :Enter no.of students : 2
+            Enter no.of subjects : 2
+            Enter the name of subject 1 : Maths
+            Enter the name of subject 2 : Science
+            ----------Enter the student datails-------------
+            Enter the student Roll no. : 1
+            Enter the student 1 name : Nandhu
+            Enter Maths mark : 99
+            Enter Science mark : 91
+            ----------Enter the student datails-------------
+            Enter the student Roll no. : 2
+            Enter the student 2 name : Bindhu
+            Enter Maths mark : 88
+            Enter Science mark : 78
+            ---Display Menu----
+            1. All student details
+            2. Particular student details
+            Enter your choice : 2
+            ----Menu for Particular student----
+            1. Name.
+            2. Roll no.
+            Enter you choice : 1
+            Enter the name of the student : Nandhu
+            Sample Output:Roll No.   Name           Maths         Science       Average       Grade
+                            1        Nandhu         99             91           95             A
+            Do you want to continue to display(Y/y) : n
+ */
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define dib 10
+typedef struct student
+{
+    int roll;
+    char name[15];
+    float avg;
+    char grade;
+}student;
+int main()
+{
+    char cond;
+    do 
+    {
+	int num,sub,choice,choice2,cond,roll_num;
+	char n_name[15];
+
+	printf("\nEnter no.of Students : ");
+	scanf("%d",&num);
+
+	student s1[num];
+
+	printf("\nEnter no.of Subjects : ");
+	scanf("%d",&sub);
+
+	char **sub_name;
+	sub_name=malloc(sub*sizeof(char *));
+	for(int i=0;i<sub;i++)
+	{
+	    sub_name[i]=malloc(15);
+	}
+
+	int  **marks;
+	marks=malloc(sub*sizeof(int *));
+	for(int i=0;i<sub;i++)
+	{
+	    marks[i]=malloc(sizeof(int));
+	}
+
+	for(int i=0;i<sub;i++)
+	{
+	    printf("Enter name of the subjets %d : \n " ,i+1);
+	    scanf("%s",sub_name[i]);
+	}
+
+	for(int i=0;i<num;i++)
+
+	{
+	    printf("..................Enter the subject details................\n");
+
+	    printf("\nEnter the student %d  roll number : \n",i+1);
+	    scanf("%d",&s1[i].roll);
+
+	    printf("\nEnter the student %d name: ",i+1);
+	    scanf("%s",s1[i].name);
+
+	    for(int j=0;j<sub;j++)
+	    {
+		printf("\nEnter the %s marks:",sub_name[j]);
+		scanf("%d",&marks[i][j]);
+	    }
+	}
+	printf("it is done\n");
+	for(int k=0;k<num;k++)
+	{
+	    s1[k].avg=0;
+	    for(int i=0;i<sub;i++)
+	    {
+		s1[k].avg+=marks[k][i];
+	    }
+
+	    s1[k].avg=(s1[k].avg/(float)sub);
+
+	    if(s1[k].avg>=85&&s1[k].avg<=100)
+	    {
+		s1[k].grade='a';
+	    }
+	    
+	    else if (s1[k].avg>=70 &&s1[k].avg<85)
+	    {
+		s1[k].grade='b';
+	    }
+	    else if(s1[k].avg>=55&&s1[k].avg<70)
+	    {
+		s1[k].grade='c';
+	    }
+	    else if(s1[k].avg>=40&&s1[k].avg<55)
+	    {
+		s1[k].grade='d';
+	    }
+	    else
+	    {
+		s1[k].grade='f';
+	    }
+	}
+	char cond1;
+	do{
+
+	    printf("..........................display menu..............\n");
+	    printf("1.all students details\n");
+	    printf("2.Particular student details\n");
+	    printf("enter the choice\n");
+
+	    scanf("%d",&choice);
+
+	    if(choice==2)
+	    {
+		printf("...................Menu for Particular student........\n");
+		printf("1.name.\n2.Roll no.\n");
+		printf("Enter the choice : \n");
+
+		scanf("%d",&choice2);
+
+		if(choice2==1)
+		{
+		    printf("Enter the name of the student\n");
+		    scanf("%s",n_name);
+		    for(int k=0;k<num;k++)
+		    {
+			if(strcmp(n_name,s1[k].name)==0)
+			{
+
+			    printf("%-15s%-15s","roll.no","name");
+			    for(int i=0;i<sub;i++)
+			    {
+				printf("%-15s",sub_name[i]);
+			    }
+			    printf("%-15s%-15s","average","grade");
+			    printf("%-15s%-15s","roll.no","name");
+			    for(int i=0;i<sub;i++)
+			    {
+				printf("%-15s",sub_name[i]);
+			    }
+
+			    printf("%-15s%-15s","average","grade");
+
+			    printf("\n");
+
+			    printf("%-15d%-15s",s1[k].roll,s1[k].name);
+
+			    for(int i=0;i<sub;i++)
+			    {
+				printf("%-15d",marks[k][i]);
+			    }
+			    printf("%-15g%-15c",s1[k].avg,s1[k].grade);
+
+			    printf("\n");
+
+			}
+		    }
+		}
+		else if (choice2==2)
+		{
+		    printf("enter the roll number of the student\n");
+		    scanf("%d",&roll_num);
+
+		    roll_num--;
+		    printf("%-15s%-15s","roll.no","name");
+		    for(int i=0;i<sub;i++)
+		    {
+			printf("%-15s",sub_name[i]);
+		    }
+
+		    printf("%-15s%-15s","average","grade");
+		    printf("\n");
+
+		    printf("%-15d%-15s",roll_num+1,s1[roll_num].name);
+
+		    for(int i=0;i<sub;i++)
+		    {
+			printf("%-15d",marks[roll_num][i]);
+		    }
+		    printf("%-15g%-15c",s1[roll_num].avg,s1[roll_num].grade);
+		    printf("\n");
+		}
+		else
+		{
+		    printf("enter the correct choice\n");
+		}
+	    }
+	    else if(choice==1)
+	    {
+		printf("%-15s%-15s","roll.no","name");
+		for(int i=0;i<sub;i++)
+
+		{
+		    printf("%-15s",sub_name[i]);
+		}
+		printf("%-15s%-15s","average","grade");
+		printf("\n");
+
+		for(int k=0;k<num;k++)
+		{
+		    printf("%-15d%-15s",s1[k].roll,s1[k].name);
+		    for(int i=0;i<sub;i++)
+		    {
+			printf("%-15d",marks[k][i]);
+		    }
+		    printf("%-15g%-15c",s1[k].avg,s1[k].grade);
+		    printf("\n");
+		}
+	    }
+	    else
+	    {
+		printf("emter the correct choice \n");
+	    }
+	    printf("do you want to continue Y/N : ");
+	    scanf("%c",&cond1);
+	    printf("\n\n");
+	}while(cond1=='y'|| cond1=='Y');
+
+	free(sub_name);
+	free(marks);
+	printf("\n\n");
+    }while(cond=='y'||cond=='Y');
+}
