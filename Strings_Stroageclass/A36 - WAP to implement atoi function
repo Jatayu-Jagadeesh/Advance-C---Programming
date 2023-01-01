@@ -1,0 +1,45 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : Implement atoi function(string,string and Integer)
+Sample input : Enter a numeric string: 12345
+               Enter a numeric string: -12345
+	           Enter a numeric string: +-12345
+	           Enter a numeric string: 12345abcd
+Sample output: string to integer is 12345
+               string to integer is -12345
+	           string to integer is 0
+	           string to integer is 12345
+*/            
+
+#include <stdio.h>                                                              // header file  for stadard input and output
+int my_atoi(const char *);                           	                        // declare function
+int main()
+{
+    char str[20];	                                  	                        // declare character array with size 20
+    printf("Enter a numeric string : ");	
+    scanf("%s", str);                                 	                        // read input from user
+    printf("String to integer is %d\n", my_atoi(str));	                        // function call
+}
+int my_atoi(const char *str)	                                                // function
+{
+		int i=0, number=0, result=0;	                                        // declare  variables
+		if(str[1] == 43 || str[1] == 45 )           	                        // check wheater the 1st index is + or -
+		{
+				return 0;	
+		}
+		if(str[0] == 43 || str[0] == 45 )          	                            // check wheater the 0th index is + or -
+		{
+				i++;			
+		}
+		while (str[i] >= 43 && str[i] <= 57)       	                            // check wheater the values between 43 to 57
+		{
+				if (str[i] == 43 || str[i] == 45)	                            // check wheater the last index is + or -
+				{
+						return result;		
+				}
+				number=str[i++] - 48;		
+				result=result*10 + number;
+		}
+		return str[0] == 45 ? -result : result;   	                            // return result
+}
