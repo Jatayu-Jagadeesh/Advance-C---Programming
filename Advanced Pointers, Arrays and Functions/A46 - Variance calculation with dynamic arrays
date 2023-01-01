@@ -1,0 +1,42 @@
+/*
+Name         : Jagadeesh
+Date         : 20 December 2022
+Description  : Program to calculate variance with dynamic arrays
+Sample input : Series of integers
+Sample output: variance = (sum of D^2) / size
+*/            
+
+#include <stdio.h>
+#include <stdlib.h>
+
+float variance(int *input, int size)                                            //defination of variance function
+{
+    int sum=0;                                                                  //sum and sum_D2 initialising with zero
+    float sum_D2=0;
+    printf("Enter the %d elements:\n",size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("[%d] -> ",i);                                                   //reading elements from the user one by one
+        scanf("%d", input+i);
+        sum+=*(input + i);                                                      //calculating sum of the inputs
+    }
+    int mean = sum / size;                                                      //calculating ean of the inputs
+    for (int i = 0; i < size; i++)
+    {
+        float D2=(*(input + i) - mean ) * ( *(input + i) - mean );              //calculating D^2 for every input
+        sum_D2 += D2;                                                           //adding each D^2 value with other and finding sum of D^2
+    }
+    return ((float)sum_D2 / size);                                              //returning the variance value from function
+ 
+}
+
+int main()
+{
+    int size;                                                                   //declaring size variable
+    printf("Enter the number of elements : ");
+    scanf("%d",&size);                                                          //reading size from user
+    int *input = malloc(size*sizeof(int));                                      //allocating for array dynamically
+    float result =variance( input, size );                                      //calling the variance function
+    printf("Variance is %f\n",result);                                          //printing the return value
+        
+}
