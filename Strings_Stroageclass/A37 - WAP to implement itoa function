@@ -1,0 +1,55 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : To implement itoa function (string,string and Integer)
+Sample input : Enter a numeric string: 12345
+               Enter a numeric string: -12345
+	           Enetr a numeric string: +-12345
+	           Enter a numeric string: a12345
+Sample output: string to integer is 12345
+               string to integer is -12345
+	           string to integer is 0
+	           string to integer is 0
+*/
+
+#include <stdio.h>
+void itoa(int num, char *str);	            	                                //declare function
+int main()
+{
+    int num=0;
+    char str[10];                              	                                //declaring character array with size of 10 
+    printf("Enter the number: ");
+    scanf("%d", &num);	                                                        //read input from user
+    itoa(num, str);	                        	                                //call function
+    printf("Integer to string is %s\n", str);
+}
+void itoa(int num, char *str)	           	                                    //function
+{
+        int rem=0, count=0;	               	                                    //declare variables
+        if(num < 0)	                       	                                    //check wheather the number is less than 0 
+		{
+				num=-num;	
+				str[0]=45;	
+				count++;                	                                    //increment count 
+		}
+		if(num > 0)	                      	                                    //check wheater the number is greater than 0 
+		{
+				int temp=num;
+				while(temp != 0)        	                                    //check wheather the temp is not equal
+				{
+						temp=temp/10;
+						++count;
+				}
+				str[count]='\0';
+				while(num != 0)	        	                                    //check wheather the number is not equal
+				{
+						rem=(num % 10) + 48;
+						str[--count]=rem;
+						num=num/10;
+				}
+		}
+		else
+		{
+				str[0]=48;		//assign 0 if number is starts from alphabets
+		}
+}
