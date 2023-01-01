@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <string.h>
+
+/*Documentation
+Name            :jagadeesh
+Date            :12 - Dec - 2022
+Description     :Suppose k = 3 (say taking 3 distinct characters ).
+                 Let 3 distinct characters be a , b, c
+                 Suppose ‘n’ is the string length to be formed using ‘k’ distinct words.
+                 Let n be 6
+                 The string should be formed in such a way that there should not be any consecutive repetitions of the strings.
+Sample input    :Enter the number characters C : 3
+                 Enter the Length of the string N : 6
+                 Enter 3 distinct characters : a b c
+Sample output   :Possible NRPS is abcbca
+Documentation*/
+
+
+void nrps(char *array, int char_size, int char_len)	// this function prints NRPS
+{
+	                                                //Declaring local variables
+	int count = 0, i = 0, j = 1;
+	char array_temp[char_size];
+	int pos = 0, pos1 = 1;
+
+	                                               //Loop for string validation
+	while(pos < (char_size))
+	{
+		while(pos1 < char_size)
+		{  
+			if(*(array + pos) == *(array + pos1))
+			{
+				if (pos != pos1)
+				{
+					printf("Error:Enter distinct characters\n");
+					return;
+				}
+			}
+			pos1++;
+		}
+		pos++;
+		pos1 = 1;
+	}
+
+	                                                      //condition for char_len
+	printf("Possible NRPS is ");
+	while (count < char_len)
+	{
+		                                                 //printing each array element one by one
+		printf("%c ", array[i]);
+
+		                                                //condition for making interchange
+		if (i == (char_size - 1))
+		{
+			j = 0;
+		}
+
+		                                                //copying each element in temp array
+		array_temp[i] = array[j];
+		i++;
+		j++;
+
+		                                               //condition for recopying into array from temp
+		if (i == char_size)
+		{
+			j = 0;
+
+			while (j < char_size)
+			{
+				array[j] = array_temp[j];
+				j++;
+			}
+
+			i = 0;
+			j = 1;
+		}
+		count++;	
+	}    
+}
+
+int main()
+{
+	                                                    //Declaring local variables
+	int char_size, char_len, i;
+
+	                                                   //Reading count of characters
+	printf("Enter the number of characters C : ");
+	scanf("%d", &char_size);
+
+	                                                       //Declaring array
+	char array[char_size];
+
+	                                                      //Declaring length of string to print
+	printf("Enter the length of the string N : ");	
+	scanf("%d", &char_len);	
+
+	                                                             //Reading characters
+	printf("Enter %d distinct characters      : ", char_size);
+
+	for (i = 0; i < char_size; i++)
+	{
+		scanf("\n%c", &array[i]);
+	}
+
+	                                                          //nrps() function to print 
+	nrps(array, char_size, char_len);				
+	printf("\n");				
+	return 0;
+}
