@@ -1,0 +1,50 @@
+/*
+Name           :Jagadeesh
+Date           :20/12/2022
+Description    :Program to convert Little Endian date to Big Endian data
+sample input   :Any short value or integer value
+sample output  :printfing the number after reversing the bytes( BIG ENDIAN )
+*/
+#include <stdio.h>                                                              // header file for standard input and output
+int main()
+{
+    int size;                                                                   // declare the variables
+    printf("Enter the size: ");                                                 // ask to user enter the size
+    scanf("%d",&size);                                                          // read the input  from user
+    int i = 0;                                                                  // initialise the i  variable
+    int j = size - 1;                                                           // initialise the j variable
+    char temp;                                                                  // declare the temp variable
+    if ( size == 4 )                                                            // checking the condition whether size equal to 4 or not
+    {
+        unsigned int num;                                                       // declare the unsigned int num
+        printf("Enter any number in Hexadecimal: ");                            // ask to user enter the hexadecimal value
+        scanf("%x",&num);                                                       // read the  input from user
+        char * ptr = (char*)&num;                                               // initialise the character type pointer variable
+        while ( i < j )
+        {
+            temp = ptr[i];                                                      // swaping the numbers
+            ptr[i] = ptr[j];
+            ptr[j] = temp;
+            i++;
+            j--;
+        }
+        printf("After conversion %x\n",num);                                    // print the value after conversion
+    }
+    else
+    {
+        unsigned short int num;                                                 // declare the unsign short int num
+        printf("Enter any number in Hexadecimal: ");                            // ask to user enter the hexa decimal value
+        scanf("%hx",&num);                                                      // read the input from user
+        char * ptr = (char*)&num;
+        while( i < j)
+        {
+            temp = ptr[i];                                                      // swaping the numbers
+            ptr[i] = ptr[j];
+            ptr[j] = temp;
+            i++;
+            j--;
+        }
+        printf("After conversion %hX\n",num);                                   // print the value after conversion
+    }
+    return 0;                                                                   // terminate the program
+}
