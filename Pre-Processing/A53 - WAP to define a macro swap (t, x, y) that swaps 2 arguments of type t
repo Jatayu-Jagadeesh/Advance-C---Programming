@@ -1,0 +1,114 @@
+/*
+Name         : D.Amaraiah
+Date         : 18 December 2022
+Description  : To define a macro swap (t,x,y) that swaps 2 arguments of type t
+Sample input : integer or float or double or character strings
+Sample output: printing the values after swapping
+*/
+
+#include <stdio.h>                                                              //defination of SWAP Macro
+#include <stdlib.h>
+#define SWAP(t,x,y) \
+    t temp;         \
+    temp = x;       \
+    x = y;          \
+    y = temp
+
+    
+int main()
+{
+    int choice;
+    printf("Enter the choice you want to swap\n");                          
+    printf("1. int\n2. char\n3. short\n4. float\n5. double\n6. string\n");      //prompt to user for what data to enter
+    printf("Enter your choice : ");    
+    scanf("%d",&choice);                                                        //reading choice from user
+    switch (choice)
+    {
+        case 1:
+            {
+                int num1,num2;                                                  //declaring integer variables
+               
+                printf("Enter the num1 : ");
+                scanf("%d",&num1);                                              //reading integer1
+                printf("Enter the num2 : ");
+                scanf("%d",&num2);                                              //redaing integer2
+                
+                SWAP(int, num1,num2);                                           //REPLACING SWAP macro defination here
+                printf("After Swapping :\n");
+                printf("num1 = %d\nnum2 = %d\n",num1,num2);                     //printing integers after swapping
+                break;
+            }
+        case 2:
+            {
+                char char1,char2;                                               //declaring character variables
+                
+                printf("Enter the char1 : ");
+                scanf(" %c",&char1);                                            //reading characer1
+                printf("Enter the char2 : ");
+                scanf(" %c",&char2);                                            //reading character2
+                
+                SWAP(char, char1, char2);                                       //Replacing SWAP macro defination in this line
+                printf("After Swapping :\n");
+                printf("char1 = %c\nchar2 = %c\n",char1,char2);                 //printing characters after swapping
+                break;
+            }
+        case 3:
+            {
+                short s_num1,s_num2;                                            //declaring short int variables
+                printf("Enter the s_num1 : ");
+                scanf("%hd",&s_num1);                                           //reading short integer1
+                printf("Enter the s_num2 : "); 
+                scanf("%hd",&s_num2);                                           //reading short integer2
+                
+                SWAP(short, s_num1, s_num2);                                    //replacing with SWAP Macro defination
+                printf("After Swapping :\n");
+                printf("s_num1 = %hd\ns_num2 = %hd\n",s_num1,s_num2);           //printing values after swapping
+                break;
+            }
+        case 4:
+            {
+                float f_num1,f_num2;                                            //declaring float variables
+                printf("Enter the f_num1 : ");
+                scanf("%f",&f_num1);                                            //reading float1
+                printf("Enter the f_num2 : "); 
+                scanf("%f",&f_num2);                                            //reading float2
+                
+                SWAP(float, f_num1, f_num2);                                    //replacing with macro defination
+                printf("After Swapping :\n");
+                printf("f_num1 = %f\nf_num2 = %f\n",f_num1,f_num2);             //printing values after swapping
+                break;
+            }
+        case 5:
+            {
+                double d_num1, d_num2;                                          //declaring double variables
+                printf("Enter the d_num1 : ");
+                scanf("%lf",&d_num1);                                           //reading double value1
+                printf("Enter the d_num2 : ");
+                scanf("%lf",&d_num2);                                           //reading double value2
+                
+                SWAP(double, d_num1, d_num2);                                   //Repacing with MACRO defination
+                printf("After Swapping :\n");
+                printf("d_num1 = %lf\nd_num2 = %lf\n",d_num1,d_num2);           //printing values after swapping
+                break;
+            }
+        case 6:
+            {
+                char *str1, *str2;                                              //declaring character pointer variables
+                str1 = malloc(20 * sizeof(char));                               //allocating memory dynamically for both strings
+                str2 = malloc(20 * sizeof(char));
+                printf("Enter the string1 : ");
+                scanf("%s",str1);                                               //reading string1
+                printf("Enter the string2 : ");
+                scanf("%s",str2);                                               //reading string2
+                
+                SWAP(char*, str1, str2);                                        //replacing text with SWAP Macro defination
+                printf("After Swapping :\n");
+                printf("str1 = %s\nstr2 = %s\n",str1,str2);                     //printing the strings after swapping the addresses
+                break;
+            }
+        default:
+            {
+                printf("Error!! enter the correct choice\n");                   //Error message if invalid input is given
+            }
+    }
+}
