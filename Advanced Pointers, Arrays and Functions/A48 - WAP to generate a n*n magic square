@@ -1,0 +1,125 @@
+/*
+Name         : Jagadeesh
+Date         : 20 December 2022
+Description  : To generate a n*n magic square
+Sample input : Enter a number: 3
+Sample output: 8 1 6
+               3 5 7
+	           4 9 2
+*/ 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void magic_square(int **magic_sqr, int size)                                    //defination of magic_square function
+{
+    int row = 0, col = size / 2, val=1;                                         // declaring row and column and initialiing row to 0 and column to size/2. 
+    while ( val <= size * size )                                                //running loop for size^2 times
+    {
+        if ( val == 1 )
+        {
+            magic_sqr[row][col] = val;                                          //assigning value to middle of firts row
+            val++;
+        }
+        else                                                                    //if value is greater than 1
+        {
+            row--;                                                              //decrementing row from current position
+            if ( row < 0 )                                                      //if row value becomes -ve
+            {
+                row = row + size;                                               //adding size to the row
+                col++;                                                          //incrementing column from that position
+                if ( col > size - 1 )                                           //if column goes beyond the size
+                {
+                    col = col - size;                                           //decrementing column with size
+                    if ( magic_sqr[row][col] == 0 )                             //checking value at that current position
+                    {
+                        magic_sqr[row][col] = val;                              //if it is zero than assigning the next value
+                        val++;                                                  //incrementing the value
+                    }
+                    else
+                    {
+                        row = row - size + 2;                                   //if it is non zero than coming back to same position
+                        col = col + size - 1;
+                        magic_sqr[row][col] = val;                              //assigning the value to the below to the position
+                        val++;                                                  //incrementing value
+                    }
+                }
+                else                                                            //if column is not greater than size
+                {
+                    if ( magic_sqr[row][col] == 0 )                             //checking the value in current position is 0 or not 
+                    {
+                        magic_sqr[row][col] = val;                              //if condition is true than assign the next value
+                        val++;                         
+                    }
+                    else                                                        //if it is non zero
+                    {
+                        col--;
+                        row+=2;                                                 //return to the previous position
+                        magic_sqr[row][col] = val;                              //assigning value to below row
+                        val++;                        
+                    }
+                }
+            }
+            else if ( row >= 0 )                                                //if row value is greater than zero
+            {
+                col++;                                                          //incrementing col
+                if ( col > size - 1 )                                           //checking column should not exceed the size
+                {
+                    col = col - size;                                           //if col is greater than size than decrementing col by size
+                    if ( magic_sqr[row][col] == 0 )                             // checking the value in position is 0
+                    {
+                        magic_sqr[row][col] = val;                              //assigning the value to that position and incrementing the value
+                        val++;
+                    }
+                    else                                                        // if value in the position is non zero
+                    {
+                        col = col + size - 1;                                   //moving to the previous position
+                        row+=2;                                                 //incrementing the row by 2
+                        magic_sqr[row][col] = val;                              //assiging the value to that position
+                        val++;                                                  //incrementing the value
+                    }
+                }
+                else                                                            //if col did not exceed the size
+                {
+                    if ( magic_sqr[row][col] == 0 )                             //checking the value in current position
+                    {
+                        magic_sqr[row][col] = val;                              //assinging value to current position if condition is true
+                        val++;
+                    }
+                    else                                                        //if value at curren position is non zero 
+                    {
+                        col--;                                                  //returning to previous position
+                        row+=2;                      
+                        magic_sqr[row][col] = val;                              //assigning the value below to that position
+                        val++;                                                  //incrementing value
+                    }
+                }
+            }
+        }
+    }
+}
+
+int main()
+{
+    int size;                               
+    printf("Enter a number: ");
+    scanf("%d",&size);                                                          //reading size from user
+    if ( size & 1 )                                                             //checking whether size is odd or nor
+    {
+        int **magic_sqr = calloc( size, sizeof(int *));                         //allocating memory for row
+        
+        for (int i = 0; i < size; i++)                                          //runninng loop for row times
+            magic_sqr[i] = calloc( size, sizeof(int));                          //allocating memory for columns
+        
+        magic_square( magic_sqr, size);                                         //calling the function
+        
+        for (int i=0; i<size; i++)
+        {
+            for (int j = 0; j < size; j++)                                      //printing the array elements in 2D form
+                printf("%3d",magic_sqr[i][j]);
+            printf("\n");
+        }
+    }
+    else
+        printf("Error : Please enter only positive odd numbers\n");             //if size is even print the error message
+}
