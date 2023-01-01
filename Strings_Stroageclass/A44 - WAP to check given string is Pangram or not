@@ -1,0 +1,52 @@
+/*
+Name         : Jagadeesh
+Date         : 30 Nov 2022
+Description  : To check given string is Panagram or not
+Sample input : Enter the string: The quick brown fox jumps over the lazy dog
+               Enter the string: The quick brown fox jumps over the dog
+Sample output: The Entered string is a Pangram string 
+               The Entered String is not a Pangram String
+*/
+
+#include<stdio.h>
+
+int pangram(char str1[])                                                        // function proto type
+/* < ------ function deffination ------ > */
+{
+    int str2[26] = {0}, count = 0;                                              // to inslize string2 with 0 and length is 26
+    for(int i = 0; str1[i] != '\0';i++)                                         // to pass the entair string1 into the loop untill the condition satisifyes
+    {
+	if(str1[i] >= 'a' && str1[i] <= 'z' || str1[i] >= 'A' && str1[i] <= 'Z')    // check the condition for alphabet 
+	{
+	    if(str1[i] >= 'A' && str1[i] <= 'Z')                                    // if the alphabet is upper case
+	    {
+		count = count + (!str2[str1[i] - 'A']);                                 // increment the count with notof string2 - 'A' i.e, if the pertucular index is already 1 makeit as 0 other wise maketit as 1 and add with count
+		str2[str1[i] - 'A'] = 1;                                                // in above statement pertucular index makes 0 that 0 is replaced with 1
+	    }
+	    else                                                                    // this is for lower case letters 
+	    {
+
+		count =count + (!str2[str1[i] - 'a']);
+		str2[str1[i] - 'a'] = 1;
+	    }
+	}
+    }
+    return count;
+}
+int main()
+{
+    char str1[100];
+    printf("Enter the string:");
+    scanf("%[^\n]",str1);                                                       // read the string from the user
+    /* < ----- function call ------ >*/
+    int count = pangram(str1);
+    if (count == 26)                                                            // if the count is equal to 26 the given string is a pangram other wish not a pangram
+    {
+	printf("The Entered String is a Pangram String\n");
+    }
+    else
+    {
+	printf("The Entered String is not a Pangram String\n");
+    }
+    return 0;
+}
