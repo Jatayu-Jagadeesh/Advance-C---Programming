@@ -1,0 +1,44 @@
+/*
+Name         : Jagadeesh
+Date         : 24 Nov 2022
+Description  : To replace each string of one more blanks by a single blank
+Sample input : Welcome      to  Emertxe
+Sample output: Welcome to Emertxe
+*/            
+
+#include <stdio.h>                                                              // header files for standard input and output 
+void replace_blank(char str[])                                                  // defination of the function
+{
+    int n=0,m,flag;                                                             //declaring of the variables
+    while (str[n] != '\0' )                                                     //condition to check string is non empty before entering to loop
+    {   
+        flag=0;             
+        if (str[n] == '\t')                                                     // checking whether it is tab space or not and if it is true replace it by single space
+            str[n] = ' ';
+        if (str[n]==' ')                                                        // after replacing check it is space or not
+        {
+            if (str[n+1]==' ' || str[n+1]=='\t' )                               // no check successive array element is tab or space
+            {
+                for ( m=n+1; str[m] != '\0'; m++)                               // if it is tab or space move the elements by one step
+                {
+                    str[m]=str[m+1];
+                }
+                flag=1;                                                         // updating the flag to know it comes out because of condition
+            }
+        }
+        if (flag==1)
+            continue;                                                           // skip the increment 
+        n++;
+    }
+}
+
+int main()
+{
+    int n=0,m,flag;                                                             // declaring the variables 
+    char str[100];                                                              // declaring chracter string with length of 100
+                                                                                // printf("Enter the string with more spaces in between two words\n");
+    scanf("%[^\n]",str);                                                        // reading the string from the user
+    replace_blank(str);                                                         // calling the function
+    printf("%s\n",str);                                                         // printing the string after removing spaces
+}
+
