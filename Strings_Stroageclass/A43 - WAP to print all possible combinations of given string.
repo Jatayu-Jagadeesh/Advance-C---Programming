@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+/*
+Documention
+Name : jagadeesh
+Date : 12 - Dec - 2022
+Description : WAP to print all possible combinations of given string.
+Sample i/p : Enter a string: abc
+Sample o/p :
+All possible combinations of given string :abc
+acb
+bca
+bac
+cab
+cba
+*/
+void combination(char *, int, int);                           //combination function declaration
+void swap(char *, char *);                                    //declare swap function
+int main()
+{
+    int i = 0, n, count;                                     //variables declaration
+    int flag = 0;                                           //initialise flag is zero
+    char str[100];                                          //string str declaration
+    printf("Enter the string: ");                           //read the input string from user
+    scanf("%s", str);
+    while(str[i] != '\0')                                  //if the str is not equal to null
+    {
+        count++;                                           //increament the count
+        str[i++];
+    }
+   // printf("Length = %d\n", count);
+    n = count;                                              //assign count value to n
+    for(int i=0; i < n-1; i++)                              //run the loop to check str[i] and str[i+1]
+    {
+        if(str[i] == str[i+1])
+        {
+            flag = 1;
+            break;
+        }
+    }
+
+    if(flag == 1)                                                 //if the flag = 1 then print to enter distinct charachters
+         printf("Error: Please enter distinct characters");
+    else
+    {
+        printf("All possible combinations of given string:");
+        combination(str, 0, n-1);                                   //call combination function
+    }
+    printf("\n");
+    return 0;
+}
+void combination(char *s, int a, int n)                             // combination function defination
+{
+    int j;
+    if(a == n)                                                      //if a value and n value equal print string
+    printf("%s\n", s);
+    else
+    {
+        for(j=a; j<= n; j++)                                        //else  call swap function
+        {
+            swap((s + a), (s + j));
+            combination(s, a+1, n);                                  //call the combination function again
+            swap((s+a), (s+j));                                     //again call swap function
+        }
+    }
+}
+void swap(char *c1, char *c2)                                      //function defination for swapping values
+{
+    char temp;
+    temp = *c1;
+    *c1 = *c2;
+    *c2 = temp;
+}
