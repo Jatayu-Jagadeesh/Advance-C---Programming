@@ -1,0 +1,45 @@
+/*
+Name         : Jagadeesh
+Date         : 24 December 2022
+Description  : To define a macro SIZEOF(X),without using sizeof operator
+Sample input : int,float... etc
+Sample output: sizeof int:4 bytes,sizeof float:4 bytes
+*/            
+#include <stdio.h>
+#define SIZEOF(x) (char*)(&x+1) - (char*)(&x)                                   //defination of SIZEOF(x) Macro
+
+int main()
+{
+    char ch;
+    unsigned char u_ch;
+    signed char s_ch;                                                           //declaring all the data types with their variables
+    int x;
+    unsigned int u_x;
+    signed int s_x;
+    short int sh_x;
+    long int l_x;
+    long long int ll_x;
+    float f;
+    double d;
+    long double ld;
+
+    
+
+    printf("size of char:%zu bytes\n",SIZEOF(ch));                              //printing sizeof character
+    printf("size of unsigned char:%zu bytes\n",SIZEOF(u_ch));                   //printing sizeof unsigned character
+    printf("size of signed char:%zu bytes\n",SIZEOF(s_ch));                     //printing sizeof signed char
+    
+    printf("size of int:%zu bytes\n",SIZEOF(x));                                //calculating sizeof integer
+    printf("size of unsigned int:%zu bytes\n",SIZEOF(u_x));    
+    printf("size of signed int:%zu bytes\n",SIZEOF(s_x));                       //calculating sizeof signed int
+    
+    printf("size of short int:%zu bytes\n",SIZEOF(sh_x));                       //calculating sizeof short
+    
+    printf("size of long int:%zu bytes\n",SIZEOF(l_x));
+    printf("size of long long int:%zu bytes\n",SIZEOF(ll_x));                   //calculating sizeof long long int
+    
+    printf("size of float:%zu bytes\n",SIZEOF(f));                              //printing sizeof float      
+    
+    printf("size of double:%zu bytes\n",SIZEOF(d));                             //printing sizeof double
+    printf("size of long double:%zu bytes\n",SIZEOF(ld));                       //printing sizeof long double
+}
