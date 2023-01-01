@@ -1,0 +1,88 @@
+/*
+Name         : Jagadeesh
+Date         : 24 December 2022
+Description  : Program to find multiplication of matrix
+Sample input : Two matrices values along with their sizes
+Sample output: Resultant Matrix
+*/            
+#include <stdio.h>
+#include <stdlib.h>
+
+int matrix_mul( int r1, int c1, int **mtx_1, int r2, int c2, int **mtx_2)       //declaration of matrix_mul function
+{
+    int **res_mtx = malloc( r1 * sizeof(int *) ), mul=1;                        //allocating memory for rows of resultant matrix
+
+    for (int i = 0; i < r1; i++)
+        *( res_mtx + i ) = malloc( c2 * sizeof(int) );                          //allocating memory for columns of resultant matrix
+
+    for (int i = 0; i < r1; i++)                                                //running loop for row times of first matrix
+    {
+        int k=0;                                                                //setting k value to zero
+        while (k < c2 )                                                         //k value should not exceed columnn 2
+        {
+            for (int j = 0; j < c1; j++)                                        //running loop for column1 number of times
+            {
+                if ( j == 0 )               
+                    mul = *( *( mtx_1 + i ) + j ) * *( *( mtx_2 + j ) + k );    //condition works for only when j == 0 and multiplying value
+                else
+                    mul += ( *( *(mtx_1 + i)+j) * *( *( mtx_2 + j ) + k ));     //condition works for other than j == 0 and adding the previous value of mul
+            }
+            *( *( res_mtx+i ) + k ) = mul;                                      //assigning final value of mul to a positin in resultant matrix
+            k++;                                                                //incrementing k which represents while loop condition
+        }
+    }
+
+    printf("Product of two matrix :\n");          
+
+    for (int i = 0; i < r1; i++)
+    {
+        for (int j = 0; j < c2; j++)
+            printf("%d ",*( *( res_mtx + i ) + j ));                            //printing the final result of the matrix 
+        printf("\n");                                                           //newline is used to print in a matrix form
+    }
+}
+
+int main()
+{
+    int r1,c1,r2,c2;                                                            //declaring variables for rows and columns
+    printf("enter number of rows in 1st matrix: ");
+    scanf("%d",&r1);
+    printf("enter number of columns in 1st matrix: ");                          //reading values of rows and columns from user
+    scanf("%d",&c1);
+
+    int **mtx_1 = malloc( r1 * sizeof(int *) );                                 //allocating memory for 1st matrix rows
+    for (int i = 0; i < r1; i++)                   
+        *( mtx_1 + i )= malloc( c1 * sizeof(int) );                             //running loop for row times and allocating memory for columns
+    for (int i = 0; i < r1; i++)
+    {
+        for (int j = 0; j < c1; j++)                                            //reading the values for 1st matrix
+        {
+            printf("mtx_1[%d][%d] = ",i,j);
+            scanf("%d",*( mtx_1 + i ) + j );
+        }
+    }
+    printf("enter number of rows in 2nd matrix: ");
+    scanf("%d",&r2);                                                            //reading row and column of second matrix
+    printf("enter number of columns in 2nd matrix: ");
+    scanf("%d",&c2);
+
+    int **mtx_2 = malloc( r2 * sizeof(int *) );                                 //allocating memory for rows for 2nd matrix
+    for (int i = 0; i < r2; i++)
+        *( mtx_2 + i ) = malloc( c2 * sizeof(int) );                            //running loop for row times to allocate memory for columns
+
+    for (int i = 0; i < r2; i++)
+    {
+        for (int j = 0; j < c2; j++)                                            //reading the values for second matrix
+        {
+            printf("mtx_2[%d][%d] = ",i,j);
+            scanf("%d",*( mtx_2 + i ) + j );
+        }
+    }
+    
+    if ( c1 == r2 )                                                             //condition to check whether multiplication is possible or not
+    {
+        matrix_mul( r1, c1, mtx_1, r2, c2, mtx_2 );                             //calling the function 
+    }
+    else
+        printf("Matrix multiplication is not possible\n");                      // if above condition is false than message showing mul not possible 
+}
